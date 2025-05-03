@@ -31,4 +31,18 @@ public class PostController {
         redirectAttributes.addFlashAttribute("message", "Message envoyé à Discord !");
         return "redirect:/";
     }
+
+    @PostMapping("/ticket/send/")
+    public String ticket(@RequestParam Map<String, String> params, RedirectAttributes redirectAttributes) {
+        String content = String.format("""
+                Nouveau ticket !
+                - Urgence : %s
+                - Corp du ticket : %s
+                """,params.get("urgence"),params.get("message"));
+        Map<String, String> payload = Map.of("content", content);
+        new RestTemplate().postForObject(DISCORD_WEBHOOK_URL, payload, String.class);
+        redirectAttributes.addFlashAttribute("message", "Message envoyé à Discord !");
+        return "redirect:/";
+
+    }
 }

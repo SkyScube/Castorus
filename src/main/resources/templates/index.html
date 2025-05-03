@@ -17,5 +17,19 @@
     </label>
     <button type="submit">Envoyer</button>
 </form>
+
+<form th:action="@{/ticket/send/}" method="post">
+    <select name="urgence">
+        <option value="">Entrer une urgence</option>
+        <otpion value="faible">Faible</otpion>
+        <option value="moyen">Moyen</option>
+        <option value="urgent">Urgent</option>
+        <option value="tres_urgent">Tres urgent</option>
+    </select>
+    <label>
+        <textarea name="message">Cause du soucis</textarea>
+    </label>
+    <button type="submit">Envoyer</button>
+</form>
 </body>
 </html>

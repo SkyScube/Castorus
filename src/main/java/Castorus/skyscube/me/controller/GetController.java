@@ -6,8 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class GetController {
     @GetMapping("/")
-    public String showForm() {
+    public String home() {
         return "index";
     }
+
 
 }
