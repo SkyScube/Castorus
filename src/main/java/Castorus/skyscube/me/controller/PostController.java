@@ -2,6 +2,7 @@ package Castorus.skyscube.me.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -9,10 +10,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.Map;
 
 @Controller
+@RequestMapping("/api")
 public class PostController {
     private static final String DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1367115535367540819/BUy-KXCHMfxKrytX3KMhfqffSR1MNRq-7nhmrNEXFX2zC42uwOxrRSycR161rYN_fAyo";
 
-    @PostMapping("/send")
+    @PostMapping("/emotion/send")
     public String sendToDiscord(@RequestParam Map<String, String> params, RedirectAttributes redirectAttributes) {
         String content = String.format("""
                         Emotions reçus :
