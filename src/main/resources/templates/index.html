@@ -18,6 +18,7 @@
     <button type="submit">Envoyer</button>
 </form>
 
+
 <form th:action="@{/ticket/send/}" method="post">
     <select name="urgence">
         <option value="">Entrer une urgence</option>
@@ -31,5 +32,19 @@
     </label>
     <button type="submit">Envoyer</button>
 </form>
+<div th:each="ticket : ${table}">
+    <a>
+        <p><span>Id :</span><span th:text="${ticket.id}"/></p>
+    </a>
+    <a>
+        <p><span>Resume :</span><span th:text="${ticket.resume}"/></p>
+    </a>
+    <a>
+        <p><span>Etat :</span><span th:text="${ticket.state}"/></p>
+    </a>
+    <a>
+        <p><span>Urgence :</span><span th:text="${ticket.urgence}"/></p>
+    </a>
+</div>
 </body>
 </html>
