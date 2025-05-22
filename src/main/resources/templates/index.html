@@ -5,7 +5,7 @@
 </head>
 <body>
 <h1>Envoyer à Discord</h1>
-<form th:action="@{/api/emotion/send}" method="post">
+<form th:action="@{/send}" method="post">
     <label>Joie: <input type="range" name="joie" min="0" max="100" value="0"/></label><br/>
     <label>Stress: <input type="range" name="stress" min="0" max="100" value="0"/></label><br/>
     <label>Fatigue: <input type="range" name="fatigue" min="0" max="100" value="0"/></label><br/>
@@ -19,7 +19,7 @@
 </form>
 
 
-<form th:action="@{/api/ticket/send/}" method="post" th:objet="${tickets}">
+<form th:action="@{/ticket/send/}" method="post">
     <select name="urgence">
         <option value="">Entrer une urgence</option>
         <otpion value="faible">Faible</otpion>
@@ -47,4 +47,5 @@
     </a>
 </div>
 </body>
+
 </html>
