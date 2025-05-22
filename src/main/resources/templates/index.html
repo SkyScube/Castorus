@@ -1,50 +1,59 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <title>Contrôleur Discord</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<h1>Envoyer à Discord</h1>
-<form th:action="@{/send}" method="post">
-    <label>Joie: <input type="range" name="joie" min="0" max="100" value="0"/></label><br/>
-    <label>Stress: <input type="range" name="stress" min="0" max="100" value="0"/></label><br/>
-    <label>Fatigue: <input type="range" name="fatigue" min="0" max="100" value="0"/></label><br/>
-    <label>Manque d'amour: <input type="range" name="amour" min="0" max="100" value="0"/></label><br/>
-    <label>Triste: <input type="range" name="triste" min="0" max="100" value="0"/></label><br/>
-    <label>Tracas : <input type="range" name="tracas" min="0" max="100" value="0"/></label><br/>
-    <label>
-        <textarea name="message"></textarea>
-    </label>
-    <button type="submit">Envoyer</button>
-</form>
+    <h1>Envoyer à Discord</h1>
+
+    <div id="cursor" class="cursorClass">
+        <form th:action="@{/send}" method="post">
+            <label>Joie: <input type="range" name="joie" min="0" max="100" value="0" /></label><br />
+            <label>Stress: <input type="range" name="stress" min="0" max="100" value="0" /></label><br />
+            <label>Fatigue: <input type="range" name="fatigue" min="0" max="100" value="0" /></label><br />
+            <label>Manque d'amour: <input type="range" name="amour" min="0" max="100" value="0" /></label><br />
+            <label>Triste: <input type="range" name="triste" min="0" max="100" value="0" /></label><br />
+            <label>Tracas : <input type="range" name="tracas" min="0" max="100" value="0" /></label><br />
+            <label>
+                <textarea name="message"></textarea>
+            </label>
+            <button type="submit">Envoyer</button>
+        </form>
+    </div>
 
 
-<form th:action="@{/ticket/send/}" method="post">
-    <select name="urgence">
-        <option value="">Entrer une urgence</option>
-        <otpion value="faible">Faible</otpion>
-        <option value="moyen">Moyen</option>
-        <option value="urgent">Urgent</option>
-        <option value="tres_urgent">Tres urgent</option>
-    </select>
-    <label>
-        <textarea name="message">Cause du soucis</textarea>
-    </label>
-    <button type="submit">Envoyer</button>
-</form>
-<div th:each="ticket : ${table}">
-    <a>
-        <p><span>Id :</span><span th:text="${ticket.id}"/></p>
-    </a>
-    <a>
-        <p><span>Resume :</span><span th:text="${ticket.resume}"/></p>
-    </a>
-    <a>
-        <p><span>Etat :</span><span th:text="${ticket.state}"/></p>
-    </a>
-    <a>
-        <p><span>Urgence :</span><span th:text="${ticket.urgence}"/></p>
-    </a>
-</div>
+    <div id="ticket" class="ticketClass">
+        <div id="form" class="formClass">
+            <form th:action="@{/ticket/send/}" method="post">
+                <select name="urgence">
+                    <option value="">Entrer une urgence</option>
+                    <otpion value="faible">Faible</otpion>
+                    <option value="moyen">Moyen</option>
+                    <option value="urgent">Urgent</option>
+                    <option value="tres_urgent">Tres urgent</option>
+                </select>
+                <textarea name="message">Cause du soucis</textarea>
+                <button type="submit">Envoyer</button>
+            </form>
+        </div>
+        <div id="result" th:each="ticket : ${table}">
+            <a>
+                <p><span>Id :</span><span th:text="${ticket.id}" />2</p>
+            </a>
+            <a>
+                <p><span>Resume :</span><span th:text="${ticket.resume}" />Un texte ici d'une certaine longueur</p>
+            </a>
+            <a>
+                <p><span>Etat :</span><span th:text="${ticket.state}" />ETat</p>
+            </a>
+            <a>
+                <p><span>Urgence :</span><span th:text="${ticket.urgence}" />une urgence</p>
+            </a>
+        </div>
+    </div>
 </body>
+
 </html>
