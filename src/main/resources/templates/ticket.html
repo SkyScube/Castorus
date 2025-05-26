@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Contrôleur Discord</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="ticket-details">
+    <h2>Détails du ticket</h2>
+
+    <div class="ticket-info">
+        <p><strong>🆔 Id :</strong> <span th:text="${ticket.id}"></span></p>
+        <p><strong>⚠️ Urgence :</strong> <span th:text="${ticket.urgence}"></span></p>
+
+        <form th:action="@{/api/ticket/update/state}" method="post">
+            <input type="hidden" name="id" th:value="${ticket.id}" />
+
+            <label for="etat"><strong>📌 État :</strong></label>
+            <select id="etat" name="etat" required>
+                <option th:selected="${ticket.state == 'ouvert'}" value="ouvert">Ouvert</option>
+                <option th:selected="${ticket.state == 'en cours'}" value="en cours">En cours</option>
+                <option th:selected="${ticket.state == 'fermé'}" value="fermé">Fermé</option>
+            </select>
+
+            <button type="submit">Mettre à jour</button>
+        </form>
+    </div>
+
+    <div class="ticket-description">
+        <h3>📜 Historique des descriptions</h3>
+        <ul>
+            <li th:each="line : ${description}" th:text="${line}"/>
+        </ul>
+
+        <form th:action="@{/api/ticket/add/description}" method="post">
+            <input type="hidden" name="id" th:value="${ticket.id}" />
+            <textarea name="description" rows="5" cols="30" required placeholder="Ajouter une nouvelle description..."></textarea>
+            <button type="submit">Ajouter</button>
+        </form>
+    </div>
+</div>
+
+
+</body>
+</html>

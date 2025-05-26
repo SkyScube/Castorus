@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class GetController {
@@ -19,6 +20,13 @@ public class GetController {
         String id = String.valueOf(ticketsService.getAllTicketss().size() + 1);
         modelMap.addAttribute("id", id);
         return "index";
+    }
+
+    @GetMapping("/ticket")
+    public String ticket(ModelMap modelMap, @RequestParam("id") int id) {
+        modelMap.addAttribute("ticket", ticketsService.getTicketsById((long) id));
+        modelMap.addAttribute("description", ticketsService.getAllDescription(ticketsService.getTicketsById((long) id)));
+        return "ticket";
     }
 
 
